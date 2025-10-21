@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carte mentale — Poser des questions</title>
+  <style>
+    :root {
+      --page-w: 297mm; /* A4 landscape width */
+      --page-h: 210mm; /* A4 landscape height */
+      --gap: 18mm;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: #f6f7f9;
+      color: #222;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }/* Page container at exact A4 landscape size */
+.page {
+  position: relative;
+  width: var(--page-w);
+  height: var(--page-h);
+  margin: 24px auto;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  overflow: hidden;
+}
+
+/* Print rules */
+@media print {
+  @page { size: A4 landscape; margin: 0; }
+  body { background: #fff; }
+  .page { margin: 0; border: none; box-shadow: none; }
+}
+
+h2, h3 { margin: 0 0 6px; }
+p { margin: 0; }
+ul { margin: 6px 0 0 18px; padding: 0; }
+
+.center-circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  border: 3px solid #ff7fb0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  font-size: 36px;
+  font-weight: 800;
+  color: #ff3f86;
+  line-height: 1.1;
+  background: radial-gradient(ellipse at center, #fff 0%, #fff 65%, #fff0 66%);
+}
+
+.box {
+  position: absolute;
+  background: #fff;
+  border: 2px solid #4b5563;
+  border-radius: 14px;
+  padding: 12px 16px;
+  max-width: 420px;
+}
+
+.box h3 { font-size: 20px; }
+.badge { display: inline-block; border: 1px solid #c7d2fe; background: #eef2ff; padding: 2px 8px; border-radius: 6px; font-size: 13px; }
+.note { font-size: 16px; line-height: 1.4; }
+.small { font-size: 13px; }
+.muted { color: #6b7280; }
+.dash { border-top: 1px dashed #cbd5e1; margin: 8px 0; }
+
+/* Placements to mimic the handwritten layout */
+.right-top { top: 18mm; right: 18mm; }
+.right-mid { top: 95mm; right: 18mm; }
+.left-mid { top: 28mm; left: 18mm; width: 460px; }
+.bottom-center { left: 50%; transform: translateX(-50%); bottom: 12mm; width: 560px; }
+
+.edge-tags {
+  position: absolute;
+  left: 4mm;
+  top: 24mm;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  letter-spacing: 1px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.kel { display: flex; gap: 10px; align-items: flex-start; }
+.kel .brace { font-size: 36px; line-height: 1; margin-top: -4px; }
+
+  </style>
+</head>
+<body>
+  <div class="page" role="document" aria-label="Carte mentale A4 paysage">
+    <!-- vertical context labels on the left edge -->
+    <div class="edge-tags">Amis · Famille · École · Travail</div><!-- big center cue -->
+<div class="center-circle">Poser des questions&nbsp;?</div>
+
+<!-- top-right: closed questions (oui/non) -->
+<section class="box right-top">
+  <h3>Questions fermées <span class="badge">Réponse&nbsp;: Oui / Non</span></h3>
+  <ul>
+    <li><em>Est-ce que</em> tu habites à Paris&nbsp;?</li>
+    <li>Tu habites à Paris&nbsp;?</li>
+    <li>Habites-tu à Paris&nbsp;?</li>
+  </ul>
+</section>
+
+<!-- middle-right: open questions -->
+<section class="box right-mid">
+  <h3>Questions ouvertes</h3>
+  <ul>
+    <li>Qu’est-ce que c’est&nbsp;?</li>
+    <li>Qu’est-ce que tu aimes&nbsp;?</li>
+  </ul>
+  <div class="dash"></div>
+  <p class="note"><strong>Réponse attendue&nbsp;:</strong> J’aime…</p>
+</section>
+
+<!-- left-mid: key notions -->
+<section class="box left-mid">
+  <h3>Notions clés</h3>
+  <p><strong>1)&nbsp;Degré de formalité</strong> : <em>familier</em> — <em>standard</em> — <em>soutenu</em></p>
+  <ul>
+    <li><strong>Familier</strong> : amis, famille</li>
+    <li><strong>Standard</strong> : école</li>
+    <li><strong>Soutenu / formel</strong> : travail, contexte officiel</li>
+  </ul>
+  <div class="dash"></div>
+  <p><strong>2)&nbsp;Mots interrogatifs &amp; déterminants</strong></p>
+  <div class="kel">
+    <div class="brace">[</div>
+    <div>
+      <p class="small"><strong>Déterminant</strong> : <em>quel</em>, <em>quelle</em>, <em>quels</em>, <em>quelles</em> → + <strong>nom</strong></p>
+      <ul class="small">
+        <li>Quel livre&nbsp;?</li>
+        <li>Quelle école&nbsp;?</li>
+        <li>Quels travaux&nbsp;?</li>
+        <li>Quelles matières&nbsp;?</li>
+      </ul>
+    </div>
+    <div class="brace">]</div>
+  </div>
+  <p class="small"><strong>Autres</strong> : qui, où, quand, comment, pourquoi</p>
+  <ul class="small">
+    <li>Comment tu t’appelles&nbsp;?</li>
+    <li>Où habites-tu&nbsp;?</li>
+  </ul>
+</section>
+
+<!-- bottom-center: little tip (optional) -->
+<section class="box bottom-center">
+  <p class="note"><strong>Astuce</strong> : on choisit une question <em>fermée</em> pour obtenir une validation rapide, et une question <em>ouverte</em> pour faire parler l’interlocuteur.</p>
+</section>
+
+  </div>
+</body>
+</html>
