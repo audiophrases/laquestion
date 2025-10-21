@@ -74,7 +74,7 @@
     .map-grid {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-      gap: 14mm 20mm;
+      gap: 12mm 20mm;
       align-items: start;
     }
 
@@ -82,6 +82,11 @@
       display: flex;
       flex-direction: column;
       gap: 12mm;
+    }
+
+    .map-column.left,
+    .map-column.right {
+      margin-top: -6mm;
     }
 
     .map-column.center {
@@ -153,21 +158,6 @@
       margin-left: 24px;
     }
 
-    .underline {
-      display: inline-block;
-      position: relative;
-    }
-
-    .underline::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -3px;
-      height: 2px;
-      background: #ffd1df;
-    }
-
     .note {
       margin-top: 8px;
       font-size: 19px;
@@ -218,8 +208,8 @@
       <div class="map-column left">
         <section class="scribble top-left">
           <h3>Questions fermées</h3>
-          <p class="tiny">(réponse <span class="underline">oui / non</span>)</p>
-          <p><span class="underline">Formalité&nbsp;?</span></p>
+          <p class="tiny">(réponse <span>oui / non</span>)</p>
+          <p><span>Formalité&nbsp;?</span></p>
           <ul>
             <li>Tu habites à Paris&nbsp;?</li>
             <li><em>Est-ce que</em> tu habites à Paris&nbsp;?</li>
@@ -229,7 +219,7 @@
 
         <section class="scribble left-middle">
           <h3>Notions clés</h3>
-          <p><strong>1.</strong> Question <span class="underline">ouverte</span> / <span class="underline">fermée</span></p>
+          <p><strong>1.</strong> Question <span>ouverte</span> / <span>fermée</span></p>
           <p><strong>2.</strong> Formalité : <em>familier</em> — <em>standard</em> — <em>soutenu</em></p>
           <ul>
             <li><strong>Familier</strong> : amis, famille</li>
@@ -239,6 +229,7 @@
           </ul>
           <div class="kel-box">
             <p><strong>Déterminant</strong> : <em>quel</em>, <em>quelle</em>, <em>quels</em>, <em>quelles</em> + nom</p>
+            <p>On regarde d’abord <strong>quel</strong>, puis juste en dessous&nbsp;: quel masculin, quelle féminin, quels pluriel, quelles pluriel féminin.</p>
             <ul>
               <li>Quel livre&nbsp;?</li>
               <li>Quelle école&nbsp;?</li>
@@ -270,7 +261,7 @@
 
         <section class="scribble right-lower">
           <h3>Déterminant&nbsp;?</h3>
-          <p><span class="underline">Quel</span> /kɛl/ + nom</p>
+          <p><span>Quel</span> /kɛl/ + nom</p>
           <p class="tiny">Quelle / Quels / Quelles</p>
           <ul>
             <li>Quel est ton nom&nbsp;?</li>
