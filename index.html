@@ -34,18 +34,15 @@
       position: relative;
       width: var(--page-w);
       height: var(--page-h);
-      margin: 32px auto;
-      padding: 28mm 24mm;
+      margin: 28px auto;
+      padding: 22mm 20mm;
       background: #fffef8;
       border: 1px solid #dad5cb;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
       overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto 1fr;
-      grid-auto-rows: minmax(min-content, auto);
-      gap: 18mm 22mm;
-      align-items: start;
+      display: flex;
+      flex-direction: column;
+      gap: 16mm;
     }
 
     @media print {
@@ -68,33 +65,47 @@
     }
 
     .page-header {
-      grid-column: 1 / -1;
       text-align: center;
       font-size: 34px;
       color: #3a3a3a;
       letter-spacing: 0.6px;
     }
 
+    .map-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: 14mm 20mm;
+      align-items: start;
+    }
+
+    .map-column {
+      display: flex;
+      flex-direction: column;
+      gap: 12mm;
+    }
+
+    .map-column.center {
+      align-items: center;
+      gap: 16mm;
+    }
+
     .center-circle {
-      grid-column: 1 / -1;
-      grid-row: 2;
-      justify-self: center;
-      width: 340px;
-      height: 340px;
-      margin: 4mm 0 6mm;
+      width: 280px;
+      height: 280px;
       border-radius: 50%;
-      border: 6px solid #ffa3c5;
+      border: 5px solid #ffa3c5;
       background: radial-gradient(circle, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 55%, rgba(255,255,255,0.2) 65%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-size: 44px;
+      font-size: 40px;
       font-weight: 600;
       font-family: "Inter", system-ui;
       color: #ff488d;
       letter-spacing: 0.5px;
+      padding: 12px;
     }
 
     .scribble {
@@ -110,11 +121,6 @@
       font-style: italic;
     }
 
-    .top-left {
-      grid-row: 3;
-      grid-column: 1;
-    }
-
     .top-left ul {
       margin-top: 6px;
     }
@@ -124,9 +130,7 @@
     }
 
     .left-middle {
-      grid-row: 4;
-      grid-column: 1;
-      max-width: 460px;
+      max-width: 420px;
     }
 
     .left-middle ul {
@@ -138,15 +142,11 @@
     }
 
     .right-upper {
-      grid-row: 3;
-      grid-column: 2;
       max-width: 320px;
     }
 
     .right-lower {
-      grid-row: 4;
-      grid-column: 2;
-      max-width: 360px;
+      max-width: 340px;
     }
 
     .right-lower ul {
@@ -197,14 +197,12 @@
     }
 
     .bottom-note {
-      grid-column: 1 / -1;
-      justify-self: center;
+      align-self: center;
       max-width: 520px;
       font-size: 20px;
       text-align: center;
       color: #61646d;
-      margin-top: 4mm;
-      grid-row: 5;
+      margin-top: 2mm;
     }
 
     .bottom-note strong {
@@ -216,66 +214,74 @@
   <div class="page" role="document" aria-label="Carte mentale A4 paysage">
     <h1 class="page-header">L’interrogation en français</h1>
 
-    <div class="center-circle">Poser<br />des questions&nbsp;?</div>
+    <div class="map-grid">
+      <div class="map-column left">
+        <section class="scribble top-left">
+          <h3>Questions fermées</h3>
+          <p class="tiny">(réponse <span class="underline">oui / non</span>)</p>
+          <p><span class="underline">Formalité&nbsp;?</span></p>
+          <ul>
+            <li>Tu habites à Paris&nbsp;?</li>
+            <li><em>Est-ce que</em> tu habites à Paris&nbsp;?</li>
+            <li>Habites-tu à Paris&nbsp;?</li>
+          </ul>
+        </section>
 
-    <section class="scribble top-left">
-      <h3>Questions fermées</h3>
-      <p class="tiny">(réponse <span class="underline">oui / non</span>)</p>
-      <p><span class="underline">Formalité&nbsp;?</span></p>
-      <ul>
-        <li>Tu habites à Paris&nbsp;?</li>
-        <li><em>Est-ce que</em> tu habites à Paris&nbsp;?</li>
-        <li>Habites-tu à Paris&nbsp;?</li>
-      </ul>
-    </section>
-
-    <section class="scribble right-upper">
-      <h3>Questions ouvertes</h3>
-      <ul>
-        <li>Qu’est-ce que c’est&nbsp;?</li>
-        <li>Qu’est-ce que tu aimes&nbsp;?</li>
-      </ul>
-      <p class="note">Réponse&nbsp;:&nbsp;<strong>J’aime...</strong></p>
-    </section>
-
-    <section class="scribble left-middle">
-      <h3>Notions clés</h3>
-      <p><strong>1.</strong> Question <span class="underline">ouverte</span> / <span class="underline">fermée</span></p>
-      <p><strong>2.</strong> Formalité : <em>familier</em> — <em>standard</em> — <em>soutenu</em></p>
-      <ul>
-        <li><strong>Familier</strong> : amis, famille</li>
-        <li><strong>Standard</strong> : école</li>
-        <li><strong>Soutenu</strong> : travail</li>
-        <li><strong>Code oral</strong> : lieux collectifs</li>
-      </ul>
-      <div class="kel-box">
-        <p><strong>Déterminant</strong> : <em>quel</em>, <em>quelle</em>, <em>quels</em>, <em>quelles</em> + nom</p>
-        <ul>
-          <li>Quel livre&nbsp;?</li>
-          <li>Quelle école&nbsp;?</li>
-          <li>Quels travaux&nbsp;?</li>
-          <li>Quelles matières&nbsp;?</li>
-        </ul>
+        <section class="scribble left-middle">
+          <h3>Notions clés</h3>
+          <p><strong>1.</strong> Question <span class="underline">ouverte</span> / <span class="underline">fermée</span></p>
+          <p><strong>2.</strong> Formalité : <em>familier</em> — <em>standard</em> — <em>soutenu</em></p>
+          <ul>
+            <li><strong>Familier</strong> : amis, famille</li>
+            <li><strong>Standard</strong> : école</li>
+            <li><strong>Soutenu</strong> : travail</li>
+            <li><strong>Code oral</strong> : lieux collectifs</li>
+          </ul>
+          <div class="kel-box">
+            <p><strong>Déterminant</strong> : <em>quel</em>, <em>quelle</em>, <em>quels</em>, <em>quelles</em> + nom</p>
+            <ul>
+              <li>Quel livre&nbsp;?</li>
+              <li>Quelle école&nbsp;?</li>
+              <li>Quels travaux&nbsp;?</li>
+              <li>Quelles matières&nbsp;?</li>
+            </ul>
+          </div>
+          <p>Autres : qui, où, quand, comment, pourquoi</p>
+          <ul>
+            <li>Comment tu t’appelles&nbsp;?</li>
+            <li>Où habites-tu&nbsp;?</li>
+          </ul>
+        </section>
       </div>
-      <p>Autres : qui, où, quand, comment, pourquoi</p>
-      <ul>
-        <li>Comment tu t’appelles&nbsp;?</li>
-        <li>Où habites-tu&nbsp;?</li>
-      </ul>
-    </section>
 
-    <section class="scribble right-lower">
-      <h3>Déterminant&nbsp;?</h3>
-      <p><span class="underline">Quel</span> /kɛl/ + nom</p>
-      <p class="tiny">Quelle / Quels / Quelles</p>
-      <ul>
-        <li>Quel est ton nom&nbsp;?</li>
-        <li>Quelle école&nbsp;?</li>
-        <li>Quels amis&nbsp;?</li>
-        <li>Quelles matières&nbsp;?</li>
-      </ul>
-      <p class="note">Comment tu t’appelles&nbsp;? Où tu habites&nbsp;?</p>
-    </section>
+      <div class="map-column center">
+        <div class="center-circle">Poser<br />des questions&nbsp;?</div>
+      </div>
+
+      <div class="map-column right">
+        <section class="scribble right-upper">
+          <h3>Questions ouvertes</h3>
+          <ul>
+            <li>Qu’est-ce que c’est&nbsp;?</li>
+            <li>Qu’est-ce que tu aimes&nbsp;?</li>
+          </ul>
+          <p class="note">Réponse&nbsp;:&nbsp;<strong>J’aime...</strong></p>
+        </section>
+
+        <section class="scribble right-lower">
+          <h3>Déterminant&nbsp;?</h3>
+          <p><span class="underline">Quel</span> /kɛl/ + nom</p>
+          <p class="tiny">Quelle / Quels / Quelles</p>
+          <ul>
+            <li>Quel est ton nom&nbsp;?</li>
+            <li>Quelle école&nbsp;?</li>
+            <li>Quels amis&nbsp;?</li>
+            <li>Quelles matières&nbsp;?</li>
+          </ul>
+          <p class="note">Comment tu t’appelles&nbsp;? Où tu habites&nbsp;?</p>
+        </section>
+      </div>
+    </div>
 
     <p class="bottom-note"><strong>Astuce&nbsp;:</strong> on choisit une question <em>fermée</em> pour obtenir une validation rapide, et une question <em>ouverte</em> pour faire parler l’interlocuteur.</p>
   </div>
