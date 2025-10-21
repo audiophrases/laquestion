@@ -1,168 +1,314 @@
-<!DOCTYPE html><html lang="fr">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Carte mentale — Poser des questions</title>
+  <title>Poser des questions ? — Carte mentale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Inter:wght@600&display=swap" rel="stylesheet">
   <style>
     :root {
       --page-w: 297mm; /* A4 landscape width */
       --page-h: 210mm; /* A4 landscape height */
-      --gap: 18mm;
     }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
     body {
       margin: 0;
-      background: #f6f7f9;
-      color: #222;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: #f4f5f7;
+      font-family: "Handlee", "Patrick Hand", "Comic Neue", system-ui;
+      color: #2f2f2f;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-    }/* Page container at exact A4 landscape size */
-.page {
-  position: relative;
-  width: var(--page-w);
-  height: var(--page-h);
-  margin: 24px auto;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
-  overflow: hidden;
-}
+    }
 
-/* Print rules */
-@media print {
-  @page { size: A4 landscape; margin: 0; }
-  body { background: #fff; }
-  .page { margin: 0; border: none; box-shadow: none; }
-}
+    .page {
+      position: relative;
+      width: var(--page-w);
+      height: var(--page-h);
+      margin: 32px auto;
+      background: #fffef8;
+      border: 1px solid #dad5cb;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
 
-h2, h3 { margin: 0 0 6px; }
-p { margin: 0; }
-ul { margin: 6px 0 0 18px; padding: 0; }
+    @media print {
+      @page { size: A4 landscape; margin: 0; }
+      body { background: #fff; }
+      .page { margin: 0 auto; box-shadow: none; }
+    }
 
-.center-circle {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 360px;
-  height: 360px;
-  border-radius: 50%;
-  border: 3px solid #ff7fb0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 24px;
-  font-size: 36px;
-  font-weight: 800;
-  color: #ff3f86;
-  line-height: 1.1;
-  background: radial-gradient(ellipse at center, #fff 0%, #fff 65%, #fff0 66%);
-}
+    h2, h3, p {
+      margin: 0;
+    }
 
-.box {
-  position: absolute;
-  background: #fff;
-  border: 2px solid #4b5563;
-  border-radius: 14px;
-  padding: 12px 16px;
-  max-width: 420px;
-}
+    ul {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
 
-.box h3 { font-size: 20px; }
-.badge { display: inline-block; border: 1px solid #c7d2fe; background: #eef2ff; padding: 2px 8px; border-radius: 6px; font-size: 13px; }
-.note { font-size: 16px; line-height: 1.4; }
-.small { font-size: 13px; }
-.muted { color: #6b7280; }
-.dash { border-top: 1px dashed #cbd5e1; margin: 8px 0; }
+    li {
+      margin-bottom: 2px;
+    }
 
-/* Placements to mimic the handwritten layout */
-.right-top { top: 18mm; right: 18mm; }
-.right-mid { top: 95mm; right: 18mm; }
-.left-mid { top: 28mm; left: 18mm; width: 460px; }
-.bottom-center { left: 50%; transform: translateX(-50%); bottom: 12mm; width: 560px; }
+    .center-circle {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      border: 6px solid #ffa3c5;
+      background: radial-gradient(circle, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 55%, rgba(255,255,255,0.2) 65%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 44px;
+      font-weight: 600;
+      font-family: "Inter", system-ui;
+      color: #ff488d;
+      letter-spacing: 0.5px;
+    }
 
-.edge-tags {
-  position: absolute;
-  left: 4mm;
-  top: 24mm;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  letter-spacing: 1px;
-  font-size: 14px;
-  color: #6b7280;
-}
+    .scribble {
+      position: absolute;
+      max-width: 420px;
+      font-size: 21px;
+      line-height: 1.45;
+    }
 
-.kel { display: flex; gap: 10px; align-items: flex-start; }
-.kel .brace { font-size: 36px; line-height: 1; margin-top: -4px; }
+    .scribble strong {
+      font-size: 22px;
+    }
 
+    .scribble em {
+      font-style: italic;
+    }
+
+    .top-left {
+      top: 24mm;
+      left: 20mm;
+      transform: rotate(-4deg);
+    }
+
+    .top-left ul {
+      margin-top: 6px;
+    }
+
+    .top-left li::marker {
+      content: "– ";
+    }
+
+    .edge-left,
+    .edge-right {
+      position: absolute;
+      font-size: 18px;
+      color: #a0a0a0;
+      letter-spacing: 1px;
+    }
+
+    .edge-left {
+      left: 8mm;
+      top: 26mm;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+
+    .edge-right {
+      right: 6mm;
+      top: 30mm;
+      writing-mode: vertical-rl;
+    }
+
+    .left-middle {
+      top: 86mm;
+      left: 26mm;
+      max-width: 460px;
+      transform: rotate(-2deg);
+    }
+
+    .left-middle ul {
+      margin-top: 6px;
+    }
+
+    .left-middle li::marker {
+      content: "• ";
+    }
+
+    .right-upper {
+      top: 40mm;
+      right: 24mm;
+      max-width: 320px;
+      transform: rotate(3deg);
+    }
+
+    .right-upper .brace {
+      font-size: 60px;
+      line-height: 0.6;
+      color: #ff488d;
+      margin: -6px 0 -10px 6px;
+    }
+
+    .right-lower {
+      top: 114mm;
+      right: 32mm;
+      max-width: 360px;
+      transform: rotate(1deg);
+    }
+
+    .right-lower ul {
+      margin-left: 24px;
+    }
+
+    .underline {
+      display: inline-block;
+      position: relative;
+    }
+
+    .underline::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -3px;
+      height: 2px;
+      background: #ffd1df;
+    }
+
+    .note {
+      margin-top: 8px;
+      font-size: 19px;
+      color: #5f626a;
+    }
+
+    .kel-grid {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin: 10px 0;
+    }
+
+    .kel-grid .brace {
+      font-size: 54px;
+      line-height: 0.8;
+      color: #6c6f7a;
+      margin-top: -8px;
+    }
+
+    .kel-grid ul {
+      margin: 4px 0 0 16px;
+      font-size: 18px;
+    }
+
+    .kel-grid ul li::marker {
+      content: "– ";
+    }
+
+    .tiny {
+      font-size: 17px;
+      color: #7a7a7a;
+    }
+
+    .bottom-note {
+      position: absolute;
+      bottom: 24mm;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      max-width: 520px;
+      font-size: 20px;
+      text-align: center;
+      color: #61646d;
+    }
+
+    .bottom-note strong {
+      color: #ff488d;
+    }
   </style>
 </head>
 <body>
   <div class="page" role="document" aria-label="Carte mentale A4 paysage">
-    <!-- vertical context labels on the left edge -->
-    <div class="edge-tags">Amis · Famille · École · Travail</div><!-- big center cue -->
-<div class="center-circle">Poser des questions&nbsp;?</div>
+    <div class="edge-left">AMI · FAMILLE · CODE ORAL</div>
+    <div class="edge-right">ÉCOLE · TRAVAIL · LIEUX / COLLECTIF</div>
 
-<!-- top-right: closed questions (oui/non) -->
-<section class="box right-top">
-  <h3>Questions fermées <span class="badge">Réponse&nbsp;: Oui / Non</span></h3>
-  <ul>
-    <li><em>Est-ce que</em> tu habites à Paris&nbsp;?</li>
-    <li>Tu habites à Paris&nbsp;?</li>
-    <li>Habites-tu à Paris&nbsp;?</li>
-  </ul>
-</section>
+    <div class="center-circle">Poser<br />des questions&nbsp;?</div>
 
-<!-- middle-right: open questions -->
-<section class="box right-mid">
-  <h3>Questions ouvertes</h3>
-  <ul>
-    <li>Qu’est-ce que c’est&nbsp;?</li>
-    <li>Qu’est-ce que tu aimes&nbsp;?</li>
-  </ul>
-  <div class="dash"></div>
-  <p class="note"><strong>Réponse attendue&nbsp;:</strong> J’aime…</p>
-</section>
+    <section class="scribble top-left">
+      <h3>Questions fermées</h3>
+      <p class="tiny">(réponse <span class="underline">oui / non</span>)</p>
+      <p><span class="underline">Formalité&nbsp;?</span></p>
+      <ul>
+        <li><em>Est-ce que</em> tu habites à Paris&nbsp;?</li>
+        <li>Tu habites à Paris&nbsp;?</li>
+        <li>Habites-tu à Paris&nbsp;?</li>
+      </ul>
+    </section>
 
-<!-- left-mid: key notions -->
-<section class="box left-mid">
-  <h3>Notions clés</h3>
-  <p><strong>1)&nbsp;Degré de formalité</strong> : <em>familier</em> — <em>standard</em> — <em>soutenu</em></p>
-  <ul>
-    <li><strong>Familier</strong> : amis, famille</li>
-    <li><strong>Standard</strong> : école</li>
-    <li><strong>Soutenu / formel</strong> : travail, contexte officiel</li>
-  </ul>
-  <div class="dash"></div>
-  <p><strong>2)&nbsp;Mots interrogatifs &amp; déterminants</strong></p>
-  <div class="kel">
-    <div class="brace">[</div>
-    <div>
-      <p class="small"><strong>Déterminant</strong> : <em>quel</em>, <em>quelle</em>, <em>quels</em>, <em>quelles</em> → + <strong>nom</strong></p>
-      <ul class="small">
-        <li>Quel livre&nbsp;?</li>
+    <section class="scribble right-upper">
+      <h3>Questions ouvertes</h3>
+      <div class="brace">{</div>
+      <ul>
+        <li>Qu’est-ce que c’est&nbsp;?</li>
+        <li>Qu’est-ce que tu aimes&nbsp;?</li>
+      </ul>
+      <p class="note">Réponse&nbsp;:&nbsp;<strong>J’aime...</strong></p>
+    </section>
+
+    <section class="scribble left-middle">
+      <h3>Notions clés</h3>
+      <p><strong>1.</strong> Question <span class="underline">ouverte</span> / <span class="underline">fermée</span></p>
+      <p><strong>2.</strong> Formalité : <em>familier</em> — <em>standard</em> — <em>soutenu</em></p>
+      <ul>
+        <li><strong>Familier</strong> : amis, famille</li>
+        <li><strong>Standard</strong> : école</li>
+        <li><strong>Soutenu</strong> : travail</li>
+      </ul>
+      <div class="kel-grid">
+        <div class="brace">[</div>
+        <div>
+          <p><strong>Déterminant</strong> : <em>quel</em>, <em>quelle</em>, <em>quels</em>, <em>quelles</em> + nom</p>
+          <ul>
+            <li>Quel livre&nbsp;?</li>
+            <li>Quelle école&nbsp;?</li>
+            <li>Quels travaux&nbsp;?</li>
+            <li>Quelles matières&nbsp;?</li>
+          </ul>
+        </div>
+        <div class="brace">]</div>
+      </div>
+      <p>Autres : qui, où, quand, comment, pourquoi</p>
+      <ul>
+        <li>Comment tu t’appelles&nbsp;?</li>
+        <li>Où habites-tu&nbsp;?</li>
+      </ul>
+    </section>
+
+    <section class="scribble right-lower">
+      <h3>Déterminant&nbsp;?</h3>
+      <p><span class="underline">Quel</span> + nom</p>
+      <p class="tiny">Quelle / Quels / Quelles</p>
+      <ul>
+        <li>Quel est ton nom&nbsp;?</li>
         <li>Quelle école&nbsp;?</li>
-        <li>Quels travaux&nbsp;?</li>
+        <li>Quels amis&nbsp;?</li>
         <li>Quelles matières&nbsp;?</li>
       </ul>
-    </div>
-    <div class="brace">]</div>
-  </div>
-  <p class="small"><strong>Autres</strong> : qui, où, quand, comment, pourquoi</p>
-  <ul class="small">
-    <li>Comment tu t’appelles&nbsp;?</li>
-    <li>Où habites-tu&nbsp;?</li>
-  </ul>
-</section>
+      <p class="note">Comment tu t’appelles&nbsp;? Où tu habites&nbsp;?</p>
+    </section>
 
-<!-- bottom-center: little tip (optional) -->
-<section class="box bottom-center">
-  <p class="note"><strong>Astuce</strong> : on choisit une question <em>fermée</em> pour obtenir une validation rapide, et une question <em>ouverte</em> pour faire parler l’interlocuteur.</p>
-</section>
-
+    <p class="bottom-note"><strong>Astuce&nbsp;:</strong> on choisit une question <em>fermée</em> pour obtenir une validation rapide, et une question <em>ouverte</em> pour faire parler l’interlocuteur.</p>
   </div>
 </body>
 </html>
