@@ -33,13 +33,14 @@
     .page {
       position: relative;
       width: var(--page-w);
-      height: var(--page-h);
+      min-height: var(--page-h);
+      height: auto;
       margin: 28px auto;
       padding: 22mm 20mm;
       background: #fffef8;
       border: 1px solid #dad5cb;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
+      overflow: visible;
       display: flex;
       flex-direction: column;
       gap: 16mm;
@@ -48,7 +49,13 @@
     @media print {
       @page { size: A4 landscape; margin: 0; }
       body { background: #fff; }
-      .page { margin: 0 auto; box-shadow: none; }
+      .page {
+        margin: 0 auto;
+        box-shadow: none;
+        height: var(--page-h);
+        min-height: var(--page-h);
+        overflow: visible;
+      }
     }
 
     h2, h3, p {
